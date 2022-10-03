@@ -22,11 +22,9 @@
 #define VIEW_TOP 2.0
 #define VIEW_NEAR 1.0
 #define VIEW_FAR 200.0
-GLfloat AmbientLight[]={0.3,0.3,0.3,1.0};                  //Initialization values for lighting
-//GLfloat DiffuseLight[] ={0.8,0.8,0.8,1.0};
-//GLfloat SpecularLight[] ={1.0,1.0,1.0,1.0};
-//GLfloat SpecRef[] = {0.7,0.7,0.7,1.0};
-//GLfloat LightPos[] = {-50.0,50.0,100.0,1.0};
+GLfloat AmbientLight[]={0.3,0.3,0.3,1.0};                  // for lighting
+GLfloat DiffuseLight[] ={0.8,0.8,0.8,1.0};
+
 GLint Shine =128;
 GLint walkX=0,walkY=0,lookX=0,lookY=0;
 GLint world=1,oldX=-1,oldY=-1;
@@ -103,6 +101,69 @@ void nose()
     glPopMatrix();
 }
 
+void icosahedron()
+{
+    glPushMatrix();
+    glTranslatef(0,4,0);
+    glScalef(.84,.84,.84);
+    glRotatef(90.0,1,0,0);
+    glColor3f(1.0, 102.0/255.0, 0);
+    glutWireIcosahedron();
+    glPopMatrix();
+}
+
+void torus()
+{
+    glPushMatrix();
+    glTranslatef(0,1.4,0);
+    glScalef(.84,.84,.84);
+    glRotatef(90.0,1,0,0);
+    glColor3f(1.0, 1.0, 0);
+    glutWireTorus(0.1,2.0,20,20);
+    glPopMatrix();
+}
+void cone()
+{
+    glPushMatrix();
+    glTranslatef(0,1.4,0);
+    glScalef(.84,.84,.84);
+    glRotatef(90.0,1,0,0);
+    glColor3f(0, 1.0, 0);
+    glutWireCone(10, 2.0, 20, 20);
+    glPopMatrix();
+}
+
+void line1()
+{
+    glPushMatrix();
+    glTranslatef(1,2,1);
+    glScalef(1,2,1);
+    glRotatef(90.0,1,0,0);
+    glColor3f(1.0, 1.0, 0);
+    gluDisk(gluNewQuadric(),50,150,50,50);
+    glPopMatrix();
+}
+void line2()
+{
+    glPushMatrix();
+    glTranslatef(1,5,1);
+    glScalef(2,1,1);
+    glRotatef(90.0,1,0,0);
+    glColor3f(0, 0, 1.0);
+    gluDisk(gluNewQuadric(),50,150,100,50);
+    glPopMatrix();
+}
+
+void bottombottom()
+{
+    glPushMatrix();
+    glTranslatef(0,.5,0);
+    glScalef(1,.7,1);
+    glRotatef(90.0,1,0,0);
+    glColor3f(0.0, 153.0/255.0, 51.0/255.0);
+    gluCylinder(gluNewQuadric(),.6,.8,5,100,100);
+    glPopMatrix();
+}
 
 void Display()
 {
@@ -133,12 +194,18 @@ void Display()
     eyeleft();
     glColor3ub(255, 255, 0);
     sphere2();
+    line1();
+    line2();
+    bottombottom();
     glColor3ub(0,100,0);
     sphere1();
     nose();
     glColor3f(0.0,0.0,0.0);
     pupilleft();
     pupilright();
+    torus();
+    cone();
+    icosahedron();
     glPopMatrix();
     glPopMatrix();                                     //****Restore matrix state****
     glutSwapBuffers();                             //****Flush drawing commands****
@@ -204,7 +271,7 @@ int main(int argc, char ** argv)
 {
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
-    glutCreateWindow("PROJECT1");
+    glutCreateWindow("PROJECT1. it's a guy");
     glutReshapeFunc(myReshape);
     glutDisplayFunc(Display);
     glutIdleFunc(Display);
