@@ -30,7 +30,7 @@ GLfloat AmbientLight[]={0.3,0.3,0.3,1.0};                  //Initialization valu
 GLint Shine =128;
 GLint walkX=0,walkY=0,lookX=0,lookY=0;
 GLint world=1,oldX=-1,oldY=-1;
-GLint doll=-1;
+GLint guy=-1;
 
 void eyeright()
 {
@@ -77,7 +77,7 @@ void sphere1()
     glPushMatrix();
     glTranslatef(0,1.2,0);
     glScalef(.9 ,.9,.9 );
-    glColor3f(1.0,0.8,0.6);
+    glColor3f(1.0, 102.0/255.0, 204.0/255.0);
     gluSphere(gluNewQuadric(),1,100,100);
     glPopMatrix();
 }
@@ -88,7 +88,7 @@ void sphere2()
     glPushMatrix();
     glTranslatef(0,.5,0);
     glScalef(1,.7,1);
-    glColor3f(1.0,0.8,0.6);
+    glColor3f(1.0, 153.0/255.0, 152.0/255.0);
     gluSphere(gluNewQuadric(),1,100,100);
     glPopMatrix();
 }
@@ -98,53 +98,10 @@ void nose()
     glPushMatrix();
     glTranslatef(0,.5,0);
     glScalef(0.3,0.3,1.3);
-    glColor3f(1.0,0.0,0.0);
+    glColor3f(1.0, 128.0/255.0, 128.0/255.0);
     gluSphere(gluNewQuadric(),1,100,100);
     glPopMatrix();
 }
-
-// Render a pyramid consists of 4 triangles
-   void piramide()
-{
-       glLoadIdentity();                  // Reset the model-view matrix
-       glTranslatef(-1.5f, 0.0f, -6.0f);  // Move left and into the screen
-       glScalef(0.3,0.3,1.3);
-       glBegin(GL_TRIANGLES);           // Begin drawing the pyramid with 4 triangles
-       // Front
-       glColor3f(1.0f, 0.0f, 0.0f);     // Red
-       glVertex3f( 0.0f, 1.0f, 0.0f);
-       glColor3f(0.0f, 1.0f, 0.0f);     // Green
-       glVertex3f(-1.0f, -1.0f, 1.0f);
-       glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-       glVertex3f(1.0f, -1.0f, 1.0f);
-       
-       // Right
-       glColor3f(1.0f, 0.0f, 0.0f);     // Red
-       glVertex3f(0.0f, 1.0f, 0.0f);
-       glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-       glVertex3f(1.0f, -1.0f, 1.0f);
-       glColor3f(0.0f, 1.0f, 0.0f);     // Green
-       glVertex3f(1.0f, -1.0f, -1.0f);
-       
-       // Back
-       glColor3f(1.0f, 0.0f, 0.0f);     // Red
-       glVertex3f(0.0f, 1.0f, 0.0f);
-       glColor3f(0.0f, 1.0f, 0.0f);     // Green
-       glVertex3f(1.0f, -1.0f, -1.0f);
-       glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-       glVertex3f(-1.0f, -1.0f, -1.0f);
-       
-       // Left
-       glColor3f(1.0f,0.0f,0.0f);       // Red
-       glVertex3f( 0.0f, 1.0f, 0.0f);
-       glColor3f(0.0f,0.0f,1.0f);       // Blue
-       glVertex3f(-1.0f,-1.0f,-1.0f);
-       glColor3f(0.0f,1.0f,0.0f);       // Green
-       glVertex3f(-1.0f,-1.0f, 1.0f);
-       glEnd();   // Done drawing the pyramid
-       
-       glutSwapBuffers();  // Swap the front and back frame buffers (double buffering)
-   }
 
 
 void Display()
@@ -166,7 +123,7 @@ void Display()
 
 
 
-     if(doll==1)
+     if(guy==1)
     {
       glTranslatef(walkX,-1,walkY);
       glRotatef(lookY,0,1,0);
@@ -183,7 +140,6 @@ void Display()
     pupilleft();
     pupilright();
     glPopMatrix();
-    piramide();
     glPopMatrix();                                     //****Restore matrix state****
     glutSwapBuffers();                             //****Flush drawing commands****
 }
@@ -214,7 +170,7 @@ void walk(int key,int x,int y)                                      //change pos
     if(key==GLUT_KEY_RIGHT) walkX+=1;
     if(key==GLUT_KEY_LEFT)  walkX-=1;
     if(key==GLUT_KEY_F10)   world=-world;
-    if(key==GLUT_KEY_F9)    doll=-doll;
+    if(key==GLUT_KEY_F9)    guy=-guy;
 }
 
 void gaze(int x,int y)
