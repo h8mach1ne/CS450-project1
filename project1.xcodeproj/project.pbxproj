@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BD408FAE28E8000C0056CDC2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD408FAD28E8000C0056CDC2 /* GLUT.framework */; };
 		BD408FB028E800160056CDC2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD408FAF28E800160056CDC2 /* OpenGL.framework */; };
-		BDB7DE5028EA21E3003B29B5 /* sample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDB7DE4B28EA21E3003B29B5 /* sample.cpp */; };
+		BDB7DE5028EA21E3003B29B5 /* project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDB7DE4B28EA21E3003B29B5 /* project.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,7 +28,7 @@
 		BD408FA228E7FFEC0056CDC2 /* project1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = project1; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD408FAD28E8000C0056CDC2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		BD408FAF28E800160056CDC2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		BDB7DE4B28EA21E3003B29B5 /* sample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sample.cpp; sourceTree = "<group>"; };
+		BDB7DE4B28EA21E3003B29B5 /* project.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = project.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 		BD408FA428E7FFEC0056CDC2 /* project1 */ = {
 			isa = PBXGroup;
 			children = (
-				BDB7DE4B28EA21E3003B29B5 /* sample.cpp */,
+				BDB7DE4B28EA21E3003B29B5 /* project.cpp */,
 			);
 			path = project1;
 			sourceTree = "<group>";
@@ -135,7 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDB7DE5028EA21E3003B29B5 /* sample.cpp in Sources */,
+				BDB7DE5028EA21E3003B29B5 /* project.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
