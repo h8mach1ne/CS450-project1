@@ -29,6 +29,8 @@ GLint Shine =128;
 GLint walkX=0,walkY=0,lookX=0,lookY=0;
 GLint world=1,oldX=-1,oldY=-1;
 GLint guy=-1;
+//unsigned char string[] = "SLAVA UKRAINI!";
+//int w = glutBitmapLength(GLUT_BITMAP_8_BY_13, string);
 
 void eyeright()
 {
@@ -154,7 +156,7 @@ void line2()
     glPopMatrix();
 }
 
-void bottombottom()
+void bottom()
 {
     glPushMatrix();
     glTranslatef(0,.5,0);
@@ -176,12 +178,16 @@ void Display()
                   glRotatef(lookY,0,1,0);
                   glRotatef(lookX,1,0,0);
     }
+//    //text display
+//    int len = stringlen(string);
+//    for (i = 0; i < len; i++) {
+//        glutBitmapCharacter(GLUT_BITMAP_8_BY_13, string);
+//    }
 
-
-    //*******************Doll***********************
+    //*******************guy***********************
     glPushMatrix();
     glTranslatef(-1,0,-6);
-
+    glRasterPos2f(0., 0.);
 
 
      if(guy==1)
@@ -190,13 +196,14 @@ void Display()
       glRotatef(lookY,0,1,0);
       glRotatef(lookX,1,0,0);
     }
+    
     eyeright();
     eyeleft();
     glColor3ub(255, 255, 0);
     sphere2();
     line1();
     line2();
-    bottombottom();
+    bottom();
     glColor3ub(0,100,0);
     sphere1();
     nose();
@@ -206,9 +213,11 @@ void Display()
     torus();
     cone();
     icosahedron();
+//    glColor3ub(1., 0., 0.);
+//    glRasterPos2f(0., 0.);
     glPopMatrix();
     glPopMatrix();                                     //****Restore matrix state****
-    glutSwapBuffers();                             //****Flush drawing commands****
+    glutSwapBuffers();
 }
 
 void setBackgroundToBlack() {
@@ -230,7 +239,7 @@ void SetupRend()
     glMateriali(GL_FRONT,GL_SHININESS,Shine);
 }
 
-void walk(int key,int x,int y)                                      //change positions using arrow keys
+void moves(int key,int x,int y)                                      //change positions using arrow keys
 {
     if(key==GLUT_KEY_UP)    walkY+=1;
     if(key==GLUT_KEY_DOWN)  walkY-=1;
@@ -275,7 +284,7 @@ int main(int argc, char ** argv)
     glutReshapeFunc(myReshape);
     glutDisplayFunc(Display);
     glutIdleFunc(Display);
-    glutSpecialFunc(walk);
+    glutSpecialFunc(moves);
     glutPassiveMotionFunc(gaze);
     SetupRend();
     glEnable(GL_NORMALIZE);
