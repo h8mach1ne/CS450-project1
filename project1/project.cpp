@@ -13,7 +13,7 @@
 
 
 #include <time.h>
-#define INIT_VIEW_X 0.0    //Define initial camera position and viewing window values
+#define INIT_VIEW_X 0.0    //initial camera position and viewing window values
 #define INIT_VIEW_Y 0.0
 #define INIT_VIEW_Z -4.5
 #define VIEW_LEFT -2.0
@@ -22,7 +22,7 @@
 #define VIEW_TOP 2.0
 #define VIEW_NEAR 1.0
 #define VIEW_FAR 200.0
-GLfloat AmbientLight[]={0.3,0.3,0.3,1.0};                  // for lighting
+GLfloat AmbientLight[]={0.3,0.3,0.3,1.0};                  //for lighting
 GLfloat DiffuseLight[] ={0.8,0.8,0.8,1.0};
 
 GLint Shine =128;
@@ -36,17 +36,17 @@ void eyeright()
 {
     //function for the right eye
     glPushMatrix();
-    glTranslatef(.20,1.1,.75);     //Specify the coordinates for the right eye
+    glTranslatef(.20,1.1,.75);     //the coordinates for the right eye
     glRotatef(-1,0,0,1);
-    glScalef(.9,.7,.7);            //Specify the size of the right eye
-    glColor3f(1.0,1.0,1.0);       //Specify the color of the eye
+    glScalef(.9,.7,.7);            //the size of the right eye
+    glColor3f(1.0,1.0,1.0);       //the color of the eye
     gluSphere(gluNewQuadric(),.3,100,100);
     glPopMatrix();
 }
 void eyeleft()
 {
     glPushMatrix();
-    glTranslatef(-.20,1.1,.75);     //Specify the position for the left eye
+    glTranslatef(-.20,1.1,.75);     //the position for the left eye
     glRotatef(1,0,0,1);
     glScalef(.9,.7,.7);
     glColor3f(1.0,1.0,1.0);
@@ -121,7 +121,7 @@ void torus()
     glScalef(.84,.84,.84);
     glRotatef(90.0,1,0,0);
     glColor3f(1.0, 1.0, 0);
-    glutWireTorus(0.1,2.0,20,20);
+    glutWireTorus(0.1,2.0,20,70);
     glPopMatrix();
 }
 void cone()
@@ -131,7 +131,7 @@ void cone()
     glScalef(.84,.84,.84);
     glRotatef(90.0,1,0,0);
     glColor3f(0, 1.0, 0);
-    glutWireCone(10, 2.0, 20, 20);
+    glutWireCone(10, 2.0, 100, 70);
     glPopMatrix();
 }
 
@@ -167,24 +167,21 @@ void bottom()
     glPopMatrix();
 }
 
+
 void Display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//Clear the window
     glColor3ub(0,0,0);
-    glPushMatrix();//Save viewing matrix state
+    glPushMatrix();     //Save viewing matrix state
     if(world==1)
     {
                  glTranslatef(walkX,-1,walkY);
                   glRotatef(lookY,0,1,0);
                   glRotatef(lookX,1,0,0);
     }
-//    //text display
-//    int len = stringlen(string);
-//    for (i = 0; i < len; i++) {
-//        glutBitmapCharacter(GLUT_BITMAP_8_BY_13, string);
-//    }
 
-    //*******************guy***********************
+    //my guy
+    
     glPushMatrix();
     glTranslatef(-1,0,-6);
     glRasterPos2f(0., 0.);
@@ -197,6 +194,7 @@ void Display()
       glRotatef(lookX,1,0,0);
     }
     
+
     eyeright();
     eyeleft();
     glColor3ub(255, 255, 0);
@@ -227,19 +225,19 @@ void setBackgroundToBlack() {
 void SetupRend()
 {
     setBackgroundToBlack();
-    glEnable(GL_DEPTH_TEST);         //Enable depth testing
-    glEnable(GL_LIGHTING);             //Enable lighting
-    glLightfv(GL_LIGHT0,GL_AMBIENT,AmbientLight);//Set up and enable light zero
+    glEnable(GL_DEPTH_TEST);         //depth testing
+    glEnable(GL_LIGHTING);             //lighting
+    glLightfv(GL_LIGHT0,GL_AMBIENT,AmbientLight);   //set up and enable light zero
 //    glLightfv(GL_LIGHT0,GL_DIFFUSE,DiffuseLight);
 //    glLightfv(GL_LIGHT0,GL_SPECULAR,SpecularLight);
     glEnable(GL_LIGHT0);
-    glEnable(GL_COLOR_MATERIAL);                   //Enable color tracking
-    glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);//Set material to follow
-    //glMaterialfv(GL_FRONT,GL_SPECULAR,SpecRef);//Set specular reflectivity and shine
+    glEnable(GL_COLOR_MATERIAL);                   //color tracking
+    glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);   //set material to follow
+    //glMaterialfv(GL_FRONT,GL_SPECULAR,SpecRef);   //set specular reflectivity and shine
     glMateriali(GL_FRONT,GL_SHININESS,Shine);
 }
 
-void moves(int key,int x,int y)                                      //change positions using arrow keys
+void moves(int key,int x,int y)          //change positions using arrow keys
 {
     if(key==GLUT_KEY_UP)    walkY+=1;
     if(key==GLUT_KEY_DOWN)  walkY-=1;
